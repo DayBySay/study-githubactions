@@ -2,7 +2,7 @@
 name: After manual workflow
 on:
   workflow_run:
-    workflow: ["Manual workflow"]
+    workflows: ["Manual workflow"]
 
 jobs:
   after:
