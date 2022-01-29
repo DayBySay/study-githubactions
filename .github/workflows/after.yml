@@ -2,7 +2,7 @@
 name: After manual workflow
 on:
   workflow_run:
-    workflows: ["Manual workflow"]
+    workflows: ["Manual workflow", "Mark stale issues and pull requests"]
 
 jobs:
   after:
