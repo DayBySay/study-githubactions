@@ -34,4 +34,4 @@ jobs:
     - name: nyassu
       env:
         HOGE: ${{github.event.inputs.hoge}}
-      run: echo ${HOGE}
+      run: echo ${HOGE:=GOMESU}
