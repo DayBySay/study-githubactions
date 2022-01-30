@@ -7,8 +7,12 @@ name: Mark stale issues and pull requests
 
 on:
   schedule:
-  - cron: '0 23 * * *'
+    - cron: '0 23 * * *'
   workflow_dispatch:
+    inputs:
+      hoge:
+        description: 'uhouho'
+        required: false
 
 jobs:
   stale:
@@ -26,3 +30,10 @@ jobs:
         stale-pr-message: 'Stale pull request message'
         stale-issue-label: 'no-issue-activity'
         stale-pr-label: 'no-pr-activity'
+    
+   - name: hoge
+     env:
+       HOGE: ${{github.event.inputs.hoge}}
+     run: |
+       echo ${HOGE:=nyassu}
+
