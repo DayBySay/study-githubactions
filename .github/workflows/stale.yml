@@ -31,3 +31,5 @@ jobs:
         stale-issue-label: 'no-issue-activity'
         stale-pr-label: 'no-pr-activity'
 
+    - name: nyassu
+      run: echo "hoge"
