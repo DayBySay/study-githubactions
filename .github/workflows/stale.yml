@@ -30,10 +30,4 @@ jobs:
         stale-pr-message: 'Stale pull request message'
         stale-issue-label: 'no-issue-activity'
         stale-pr-label: 'no-pr-activity'
-    
-   - name: hoge
-     env:
-       HOGE: ${{github.event.inputs.hoge}}
-     run: |
-       echo ${HOGE:=nyassu}
 
