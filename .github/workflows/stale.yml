@@ -32,4 +32,6 @@ jobs:
         stale-pr-label: 'no-pr-activity'
 
     - name: nyassu
-      run: echo "hoge"
+      env:
+        HOGE: ${{github.event.inputs.hoge}}
+      run: echo ${HOGE}
