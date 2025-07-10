@@ -7,4 +7,4 @@ act-manual:
 	-d '{"ref":"main"}'
 
 test:
-	echo "test"
+	echo "test" || echo "test"
