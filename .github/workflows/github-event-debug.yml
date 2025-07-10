@@ -1,0 +1,44 @@
+name: GitHub Event Debug
+
+on:
+  issues:
+    types: [opened, edited, deleted, transferred, pinned, unpinned, closed, reopened, assigned, unassigned, labeled, unlabeled, locked, unlocked, milestoned, demilestoned]
+  issue_comment:
+    types: [created, edited, deleted]
+  pull_request:
+    types: [opened, edited, closed, reopened, assigned, unassigned, labeled, unlabeled, locked, unlocked, milestoned, demilestoned, ready_for_review, review_requested, review_request_removed, synchronize, converted_to_draft, auto_merge_enabled, auto_merge_disabled]
+  pull_request_review:
+    types: [submitted, edited, dismissed]
+  pull_request_review_comment:
+    types: [created, edited, deleted]
+  pull_request_target:
+    types: [opened, edited, closed, reopened, assigned, unassigned, labeled, unlabeled, locked, unlocked, milestoned, demilestoned, ready_for_review, review_requested, review_request_removed, synchronize, converted_to_draft, auto_merge_enabled, auto_merge_disabled]
+
+permissions:
+  contents: read
+  issues: read
+  pull-requests: read
+
+jobs:
+  debug-github-event:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dump GitHub Event Context
+        env:
+          GITHUB_EVENT_JSON: ${{ toJson(github.event) }}
+        run: |
+          echo "=== GitHub Event Context ==="
+          echo "Event Name: ${{ github.event_name }}"
+          echo "Action: ${{ github.event.action }}"
+          echo ""
+          echo "=== Full Event JSON ==="
+          echo "$GITHUB_EVENT_JSON" | jq '.'
+          echo ""
+          echo "=== Event Summary ==="
+          echo "Repository: ${{ github.repository }}"
+          echo "Actor: ${{ github.actor }}"
+          echo "SHA: ${{ github.sha }}"
+          echo "Ref: ${{ github.ref }}"
+          echo "Workflow: ${{ github.workflow }}"
+          echo "Run ID: ${{ github.run_id }}"
+          echo "Run Number: ${{ github.run_number }}"
